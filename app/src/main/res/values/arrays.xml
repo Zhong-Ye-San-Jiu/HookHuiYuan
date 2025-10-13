@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+    <string-array name="xposed_scope">
+        <item>com.shixin.toolmaster</item>
+        <item>cn.ticktick.task</item>
+        <item>com.cosmos.tools</item>
+        <item>com.shixin.toolbox</item>
+        <item>com.zhanlang.notes</item>
+        <item>com.ZWSoft.ZWCAD</item>
+        <item>com.magicalstory.days</item>
+        <item>com.lp.diary.time.lock</item>
+        <item>com.youqi.miaomiao</item>
+        <item></item>
+    </string-array>
+	
+</resources>
