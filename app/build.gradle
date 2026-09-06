@@ -5,7 +5,7 @@ android {
     buildToolsVersion "33.0.0"
     
     defaultConfig {
-        applicationId "com.HookHuiYuan.application"
+        applicationId "com.HookApp.application"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
