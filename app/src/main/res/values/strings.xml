@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HookApp</string>
-    <string name="xposed_activated">"Xposed: Activated"</string>
-    <string name="xposed_unactivated">"Xposed: Unactivated"</string>
+    <string name="app_desc">解锁部分 APP 的会员</string>
+
+    <string name="status_active">模块已激活</string>
+    <string name="status_inactive">模块未激活</string>
+    <string name="count_installed">已安装 %1$d / %2$d</string>
+
+    <string name="section_apps">已支持的应用</string>
+    <string name="footer_hint">轻点查看应用详情，长按直接启动</string>
+
+    <string name="tag_installed">已安装</string>
+    <string name="tag_missing">未安装</string>
 </resources>

@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#00796B</color>
-    <color name="colorAccent">#FF9800</color>
+    <!-- 主题色（保持原有名字，避免影响其他引用） -->
+    <color name="colorPrimary">#1B2436</color>
+    <color name="colorPrimaryDark">#131A28</color>
+    <color name="colorAccent">#3FD08A</color>
+
+    <!-- 页面 -->
+    <color name="bg">#EFF2F5</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="line">#E6EBEF</color>
+
+    <!-- 头部 -->
+    <color name="header">#1B2436</color>
+    <color name="header_sub">#93A0B4</color>
+    <color name="strip">#1FFFFFFF</color>
+
+    <!-- 文字 -->
+    <color name="ink">#141A20</color>
+    <color name="ink_2">#5D6B78</color>
+    <color name="ink_3">#96A2AE</color>
+
+    <!-- 状态 -->
+    <color name="live">#3FD08A</color>
+    <color name="dead">#6B7683</color>
+    <color name="ok">#1B8F5A</color>
+    <color name="ok_bg">#E3F4EA</color>
+    <color name="off">#8A96A2</color>
+    <color name="off_bg">#EDF1F4</color>
 </resources>

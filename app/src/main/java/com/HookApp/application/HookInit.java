@@ -190,6 +190,15 @@ public class HookInit implements IXposedHookLoadPackage {
                             break;
 
                         case "com.waterControl.administrator.wisdomschool":
+                            /*
+                             * 智校园 3.0.6 开屏广告链路（实测）：
+                             *   MainActivity.<init>(MainActivity.java:98) 里 new 出 cj.mobile.CJSplash
+                             *     -> CJSplash 内部 Runnable (cj.mobile.CJSplash$o.run) 发起穿山甲请求
+                             *        -> cj.mobile.a.j.a(TTSDK.java:90) -> AdSlot.Builder.build()（广告位 891847404）
+                             * App 自己的导航也由广告关闭回调驱动：
+                             *   CJSplash$a$e.run -> MainActivity$3.onClose -> VersionUpgradeUtils.toHomePage -> YongHuMainActivity
+                             */
+                            // 1) 关键：跳过开屏页（立刻跳走并 finish，不依赖广告回调）
                             XposedHelpers.findAndHookMethod(
                                 "com.waterControl.administrator.wisdomschool.activity.MainActivity",
                                 lp.classLoader,
@@ -198,22 +207,29 @@ public class HookInit implements IXposedHookLoadPackage {
                                 new XC_MethodHook() {
                                     @Override
                                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                                        // 获取当前的 MainActivity 实例
                                         android.app.Activity activity = (android.app.Activity) param.thisObject;
-
-                                        // 构建跳转至 YongHuMainActivity 的 Intent
                                         android.content.Intent intent = new android.content.Intent();
-                                        intent.setClassName(activity, "com.waterControl.administrator.wisdomschool.activity.YongHuMainActivity");
-
-                                        // 启动目标 Activity
+                                        intent.setClassName(activity,
+                                            "com.waterControl.administrator.wisdomschool.activity.YongHuMainActivity");
                                         activity.startActivity(intent);
-
-                                        // 销毁当前的开屏 Activity，防止返回时退回开屏页
                                         activity.finish();
                                     }
                                 }
                             );
-                            showToast(appContext, "智校园: 已成功跳过开屏页！");
+
+                            // 2) 掐掉广告加载任务：请求根本不发出。放在后面并单独 try，
+                            //    万一混淆名变了也不影响上面的跳转。
+                            try {
+                                XposedHelpers.findAndHookMethod(
+                                    "cj.mobile.CJSplash$o",
+                                    lp.classLoader,
+                                    "run",
+                                    XC_MethodReplacement.returnConstant(null)
+                                );
+                            } catch (Throwable ignored) {
+                            }
+
+                            showToast(appContext, "智校园: 已跳过开屏页！");
                             break;
 
                     }
