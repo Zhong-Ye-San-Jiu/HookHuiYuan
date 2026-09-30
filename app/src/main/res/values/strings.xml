@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HookApp</string>
+    <string name="app_name">HookHuiYuan</string>
     <string name="app_desc">解锁部分 APP 的会员</string>
 
     <string name="status_active">模块已激活</string>
